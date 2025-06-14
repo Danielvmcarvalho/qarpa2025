@@ -3,7 +3,7 @@
 import { Given, When, Then, And } from "cypress-cucumber-preprocessor/steps";
 
 Given("que eu acesse a página de solicitação de crédito", () => {
-    cy.visit('https://angelofdiasg.tech/qaprogramador/sacfunc/')
+    cy.visit('/')
 })
 
 When("eu preencher os campos obrigatórios com dados válidos", () => {
@@ -23,3 +23,32 @@ And("eu clico em {string}", (text) => {
 Then("o sistema irá informar que houve uma solicitação", () => {
     cy.get('#result').should('exist').should('be.visible')
 })
+
+When(
+    "eu preencho os dados do cliente com nome {string}, email {string}, renda mensal de {string}, CPF {string} e valor de crédito de {string}",
+    (nome, email, renda, cpf, credito) => {
+      // Usamos os seletores por ID fornecidos e os parâmetros capturados
+      cy.get('#nome').type(nome);
+      cy.get('#email').type(email);
+      cy.get('#renda').type(renda);
+      cy.get('#cpf').type(cpf);
+      cy.get('#credito').type(credito);
+    }
+  );
+
+  Then("o sistema irá informar que a solicitação foi {string}", (resultado) => {
+    cy.get('#result').should('be.visible').should('contain', resultado)
+})
+
+When(
+    "um cliente solicita um crédito de {string} com uma renda mensal de {string}",
+    (valorCredito, renda) => {
+      // Usando os dados fixos e seletores por ID que você forneceu
+      cy.get('#nome').type('Cliente Teste');
+      cy.get('#email').type('cliente.teste@email.com');
+      cy.get('#cpf').type('123.456.789-01');
+      // Usando os dados da tabela de Exemplos para os campos financeiros
+      cy.get('#renda').type(renda);
+      cy.get('#credito').type(valorCredito);
+    }
+  );
