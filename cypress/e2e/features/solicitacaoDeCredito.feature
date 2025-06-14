@@ -39,4 +39,4 @@ Contexto: O usuário está logado e tem permissão para aprovar ou reprovar soli
         Exemplos:
         | Perfil        | ValorCredito  | Renda    | Resultado    |
         | "Renda alta"  | "3000"        | "3000"   | "APROVADA"   |
-        | "Renda baixa" | "3000"        | "1000"   | "REPROVADA"  |
+        | "Renda baixa" | "2000"        | "1000"   | "REPROVADA"  |
