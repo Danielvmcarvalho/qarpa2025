@@ -13,7 +13,9 @@ context('Validação da funcionalidade de aprovação ou reprovação', () => {
         cy.get('#renda').type('2000')
         cy.get('#cpf').type('123.456.789-01')
         cy.get('#credito').type('1000')
+        // Passo de um comportamento serializado
         cy.get('[type="submit"]').click()
+        //Então - validação
         cy.get('#result').should('exist').should('be.visible')
     });
 
