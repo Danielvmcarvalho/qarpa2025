@@ -1,2 +1,2 @@
-# qarpa2025
+# - qarpa2025
 Repositório para as automações. 
