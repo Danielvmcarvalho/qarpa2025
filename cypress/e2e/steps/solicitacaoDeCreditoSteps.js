@@ -52,3 +52,22 @@ When(
       cy.get('#credito').type(valorCredito);
     }
   );
+
+  // ESTE É O NOVO STEP DEFINITION QUE USA FAKER
+When(
+    "um cliente aleatório solicitar um crédito de {string} com uma renda mensal de {string}",
+    (renda, credito) => {
+      // 1. Chamamos a task 'generateUser' que definimos no cypress.config.js
+      cy.task('geradorDeUser').then((user) => {
+        // 2. O .then() nos dá acesso ao objeto 'user' retornado pela task
+        cy.log(`Usuário Gerado: ${user.nome} | ${user.email} | ${user.cpf}`);
+  
+        // 3. Usamos os dados do objeto 'user' e os parâmetros do step para preencher o formulário
+        cy.get('#nome').type(user.nome);
+        cy.get('#email').type(user.email);
+        cy.get('#cpf').type(user.cpf);
+        cy.get('#renda').type(renda);
+        cy.get('#credito').type(credito);
+      });
+    }
+  );

@@ -31,3 +31,12 @@ Contexto: O usuário está logado e tem permissão para aprovar ou reprovar soli
         | "Renda alta"  | "3000"        | "3000"   | "APROVADA"   |
         | "Renda baixa" | "3000"        | "1000"   | "REPROVADA"  |
         
+    Esquema do Cenário: Análise de crédito para clientes
+        Quando um cliente aleatório solicitar um crédito de <ValorCredito> com uma renda mensal de <Renda>
+        E eu clico em "Solicitar Crédito"
+        Então o sistema irá informar que a solicitação foi <Resultado>
+
+        Exemplos:
+        | Perfil        | ValorCredito  | Renda    | Resultado    |
+        | "Renda alta"  | "3000"        | "3000"   | "APROVADA"   |
+        | "Renda baixa" | "3000"        | "1000"   | "REPROVADA"  |
