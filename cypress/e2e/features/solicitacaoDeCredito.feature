@@ -40,3 +40,13 @@ Contexto: O usuário está logado e tem permissão para aprovar ou reprovar soli
         | Perfil        | ValorCredito  | Renda    | Resultado    |
         | "Renda alta"  | "3000"        | "3000"   | "APROVADA"   |
         | "Renda baixa" | "2000"        | "1000"   | "REPROVADA"  |
+
+        Esquema do Cenário: Análise de crédito para clientes
+        Quando eu preencho o formulário com os dados do <MassaDeDados>
+        E eu clico em "Solicitar Crédito"
+        Então o sistema irá informar que a solicitação foi <MassaDeDados>
+
+        Exemplos:
+        | Perfil        | MassaDeDados  |
+        | "Renda alta"  | "solicitacaoCredito"        | 
+        | "Renda baixa" | "solicitacaoCredito"        | 
