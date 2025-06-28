@@ -1,7 +1,7 @@
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
-import LoginPage from "../../support/page/loginPage";
 import loginActions from "../../support/appActions/loginActions";
 import productsPage from "../../support/page/productsPage";
+import loginPage from "../../support/page/loginPage";
 
 let usersData; // Armazenará todos os dados do fixture
 let currentUser; // Armazenará o objeto do usuário atualmente em teste
@@ -40,9 +40,22 @@ When('eu preencho os campos de usuário e senha com as credenciais do usuário {
 
   // E eu clico no botão "{string}" (este passo pode continuar genérico ou ser movido para o PO se sempre for o botão de login)
 When('eu clico no botão {string}', (buttonText) => {
-    LoginPage.clicarLogin();
+    loginPage.clicarLogin();
   });
 
   Then('eu devo ser redirecionado para a tela de {string}', (titleText) => {
+    cy.url().should('include','/inventory.html')
     productsPage.textoDoTitulo(titleText)
+  });
+
+  Then('o sistema deve exibir a mensagem de erro {string}', (messageText) => {
+    loginPage.verificarMensagemDeErro(messageText)
+  });
+
+  Then('o sistema deve exibir a mensagem de erro do perfil {string}', (perfil_usuario) => {
+    if (!usersData[perfil_usuario] || !usersData[perfil_usuario].mensagem) {
+      throw new Error(`Mensagem de erro para o usuário '${perfil_usuario}' não encontrada no fixture!`);
+    }
+    const expectedErrorMessage = usersData[perfil_usuario].mensagem;
+    loginPage.verificarMensagemDeErro(expectedErrorMessage);
   });
