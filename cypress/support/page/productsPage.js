@@ -5,7 +5,7 @@ const ELEMENTS = {
 class ProductsPage {
 
     textoDoTitulo(text){
-        cy.get(ELEMENTS.title).contains(text).should(be.visible)
+        cy.get(ELEMENTS.title).contains(text).should('be.visible')
     }
 
 }
