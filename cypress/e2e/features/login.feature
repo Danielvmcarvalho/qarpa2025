@@ -24,4 +24,4 @@ Contexto: O usuário deve estar na página de login do saucedemo
 Cenário: Validação de Login com Diferentes Tipos de Usuário
     Quando eu preencho os campos de usuário e senha com as credenciais do usuário "usuario_valido"
     E eu clico no botão "LOGIN"
-    Então eu devo ser redirecionado para a tela de "Catálogo de produtos"
+    Então eu devo ser redirecionado para a tela de "Products"

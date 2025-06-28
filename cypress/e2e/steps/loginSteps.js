@@ -1,5 +1,7 @@
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 import LoginPage from "../../support/page/loginPage";
+import loginActions from "../../support/appActions/loginActions";
+import productsPage from "../../support/page/productsPage";
 
 let usersData; // Armazenará todos os dados do fixture
 let currentUser; // Armazenará o objeto do usuário atualmente em teste
@@ -11,9 +13,16 @@ before(() => {
   });
 });
 
+// Executa a limpeza dos dados do navegador após cada teste
+after(() => {
+    cy.clearAllCookies();
+    cy.clearAllLocalStorage();
+    cy.clearAllSessionStorage();
+});
+
 // Dado que eu acesse a página de login do Saucedemo
 Given('que eu acesse a página de login', () => {
-  cy.visit('https://www.saucedemo.com/'); // URL do Saucedemo
+  cy.visit('/'); // URL do Saucedemo
 });
 
 // Quando eu preencho os campos de usuário e senha com as credenciais do usuário "{string}"
@@ -23,8 +32,17 @@ When('eu preencho os campos de usuário e senha com as credenciais do usuário {
       throw new Error(`Usuário '${perfil_usuario}' não encontrado no fixture!`);
     }
     const user = usersData[perfil_usuario];
-    LoginPage.loginAppAction(user.username, user.password);
+    loginActions.loginAppAction(user.username, user.password);
     // loginPage.preencherUsuario(user.username)
     // loginPage.preencherSenha(user.password)
 
+  });
+
+  // E eu clico no botão "{string}" (este passo pode continuar genérico ou ser movido para o PO se sempre for o botão de login)
+When('eu clico no botão {string}', (buttonText) => {
+    LoginPage.clicarLogin();
+  });
+
+  Then('eu devo ser redirecionado para a tela de {string}', (titleText) => {
+    productsPage.textoDoTitulo(titleText)
   });
