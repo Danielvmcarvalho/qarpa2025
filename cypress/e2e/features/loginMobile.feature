@@ -1,14 +1,5 @@
 #language: pt
 
-# 1 Login válido (user e senha válidos)
-# - Login inválido:
-# 	2 User inválido e senha válida
-# 	3 User válido e senha inválida
-# 	4 User vazio e senha válida
-# 	5 User válido e senha vazia
-# 6 Usuário bloqueado
-# 7 Usuário com prolema
-
 @login
 Funcionalidade: Validação do login do saucedemo
     Cenários voltados para os os testes de login do saucedemo
@@ -23,10 +14,12 @@ Contexto: O usuário deve estar na página de login do saucedemo
     #     Então o sistema irá para a tela de "Catálogo de produtos"
 
 @login_valido
-Cenário: Validação de Login com credenciais válidas
-    Quando eu preencho os campos de usuário e senha com as credenciais do usuário "usuario_valido"
+Cenário: Validação de Login com credenciais válidas no iphone-xr
+    Quando eu esteja usando o dispositivo "iphone-xr"
+    E eu preencho os campos de usuário e senha com as credenciais do usuário "usuario_valido"
     E eu clico no botão "LOGIN"
     Então eu devo ser redirecionado para a tela de "Products"
+    And os produtos devem ser exibidos em uma única coluna vertical
 
 # @login_invalido
 # Esquema do Cenário: Validação de Login com credenciais inválidas com mensagem
