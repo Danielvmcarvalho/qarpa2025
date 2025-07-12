@@ -7,7 +7,8 @@ When('eu esteja usando o dispositivo {string}', (mobile) => {
   });
 
 Then('os produtos devem ser exibidos em uma única coluna vertical', () => {
-    cy.get('.inventory_list').then(($list) => {
+  // Pega a largura da lista de produtos
+   cy.get('.inventory_list').then(($list) => {
     const listWidth = $list.width();
 
     // Itera sobre cada item da lista

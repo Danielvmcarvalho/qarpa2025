@@ -19,7 +19,7 @@ Cenário: Validação de Login com credenciais válidas no iphone-xr
     E eu preencho os campos de usuário e senha com as credenciais do usuário "usuario_valido"
     E eu clico no botão "LOGIN"
     Então eu devo ser redirecionado para a tela de "Products"
-    And os produtos devem ser exibidos em uma única coluna vertical
+    E os produtos devem ser exibidos em uma única coluna vertical
 
 # @login_invalido
 # Esquema do Cenário: Validação de Login com credenciais inválidas com mensagem
